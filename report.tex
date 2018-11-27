@@ -19,13 +19,29 @@
 \usepackage[section]{placeins}
 \usepackage{subfigure}
 
-\setkomafont{captionlabel}{\normalsize\bfseries\sffamily}
-\setkomafont{caption}{\normalsize\sffamily}
-\renewcommand*{\captionformat}{\ }  % (Рис. #.)
+%% Set font for table and figure labels
+\setkomafont{captionlabel}{\small\sffamily}
+\setkomafont{caption}{\small\sffamily}
+\setcapindent{0pt}
+
+%% Set label format for tables and figures
+\usepackage[justification=centering]{caption}
+\renewcommand*{\captionformat}{}
+\DeclareCaptionFormat{figformat}{#1#2.~#3}
+\DeclareCaptionFormat{tabformat}{\hfill#1#2\par#3\par}
+\captionsetup[table]{textfont = bf, format = tabformat}
+\captionsetup[figure]{format = figformat}
+
+%% Set footnote format
+\deffootnote[1.5em]{0em}{1em}{\textsuperscript{\thefootnotemark}\,}
+
+%% Disable warning about deprecated \float@addtolist macro used by listings
+\usepackage{scrhack}
 
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows, positioning}
 
+\usepackage{colortbl, booktabs}
 \usepackage{amsmath, amssymb}
 \usepackage{enumerate, xspace, setspace, calc}
 
@@ -107,7 +123,33 @@ kriterion "--- признак для суждения) же есть не что
 затрагивает данное нововведение. Введение количественных показателей
 эффективности по этой же причине является избыточным. Однако предстоит выяснить
 действительно ли заявленные в Правилах <<качественные критерии оценки
-эффективности>> являются таковыми. 
+эффективности>> являются таковыми.
+
+\begin{table}
+  \centering\small
+  \caption{Соответствие сущностных элементов и~графических изображений логико-операционной модели}
+  \label{t:Legend}
+
+  \begin{tabular}{p{22em}p{19em}}
+    \toprule
+    \textsf{Сущностные элементы} & \textsf{Графический образ} \\
+    \midrule
+    Процессы (этапы, процедуры, операции), в~которых не осуществляется выбор. &
+	  Вытянутый прямоугольник (жирные линии) с~названием процесса (по
+	  центру прямоугольника) \\
+    Исполнители процедур, операций & Надпись слева внутри прямоугольника \\
+    Документы & Менее вытянутый прямоугольник (тонкие линии) с~названием
+	  документа внутри \\
+    Связи между процессами (этапами, процедурами, операциями)
+	  и~документами"=входами & Прямая линия со стрелкой на~конце \\
+    Связи между процессами (этапами, процедурами, операциями)
+	  и~документами"=выходами & Прямая линия без стрелки на~конце \\
+    Источники внешних документов"=входов & Кружок (в начале прямой линии)
+	  с~названием источника над кружком \\
+    Решатель (логическое условие) & Ромбик с~указанием сути условия \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 % ----------------------------------------------------------------------------------
 \section{Выводы}
