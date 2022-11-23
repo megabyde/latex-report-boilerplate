@@ -1,7 +1,15 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -11,7 +19,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
       - name: Build
         uses: dante-ev/latex-action@2021-A
         with:
-          root_file: report.tex
+          root_file: report.tex 
+
+      - name: Prepare artifacts
+        run: mkdir -p _site && mv *.pdf _site/
+
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
