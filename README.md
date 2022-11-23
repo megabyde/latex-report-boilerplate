@@ -1,4 +1,4 @@
-# LaTeX Report Boilerplate
+# $\LaTeX$ Report Boilerplate
 
 [![CI](https://github.com/megabyde/latex-report-boilerplate/actions/workflows/main.yml/badge.svg)](https://github.com/megabyde/latex-report-boilerplate/actions/workflows/main.yml)
 [![made-with-latex](https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg)](https://www.latex-project.org/)
