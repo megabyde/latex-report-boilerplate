@@ -5,4 +5,5 @@
 
 ## Overview
 
-A simple LaTeX boilerplate for reports in Russian. See the pre-built document [here](https://megabyde.github.io/latex-report-boilerplate/report.pdf).
+A simple $\LaTeX$ boilerplate for scholar reports in Russian.
+See the pre-built document [here](https://megabyde.github.io/latex-report-boilerplate/report.pdf).
