@@ -1,17 +1,11 @@
-
 name: CI
 
 on:
-  push:
-    branches: main
   pull_request:
-    branches: main
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: 
-      contents: write
 
     steps:
       - name: Checkout
@@ -21,4 +15,3 @@ jobs:
         uses: dante-ev/latex-action@2021-A
         with:
           root_file: report.tex
-          compiler: pdflatex
