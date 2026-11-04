@@ -17,13 +17,13 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7.0.1
 
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v6.0.0
 
       - name: Build
-        uses: dante-ev/latex-action@2021-A
+        uses: dante-ev/latex-action@2026-C
         with:
           root_file: report.tex 
 
@@ -31,7 +31,7 @@ jobs:
         run: mkdir -p _site && mv *.pdf _site/
 
       - name: Upload artifacts
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v5.0.0
 
   deploy:
     needs: build
@@ -45,4 +45,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v5.0.1
