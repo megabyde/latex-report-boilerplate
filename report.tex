@@ -44,6 +44,42 @@
 \usepackage{colortbl, booktabs}
 \usepackage{amsmath, amssymb}
 \usepackage{enumerate, xspace, setspace, calc}
+\usepackage{xurl}
+\usepackage{listings}
+
+\lstset{
+  basicstyle=\small\ttfamily,
+  keywordstyle=\color{blue!60!black},
+  commentstyle=\color{black!60},
+  stringstyle=\color{green!40!black},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  captionpos=t,
+  literate=
+    {А}{{\CYRA}}1 {Б}{{\CYRB}}1 {В}{{\CYRV}}1 {Г}{{\CYRG}}1
+    {Д}{{\CYRD}}1 {Е}{{\CYRE}}1 {Ё}{{\CYRYO}}1 {Ж}{{\CYRZH}}1
+    {З}{{\CYRZ}}1 {И}{{\CYRI}}1 {Й}{{\CYRISHRT}}1 {К}{{\CYRK}}1
+    {Л}{{\CYRL}}1 {М}{{\CYRM}}1 {Н}{{\CYRN}}1 {О}{{\CYRO}}1
+    {П}{{\CYRP}}1 {Р}{{\CYRR}}1 {С}{{\CYRS}}1 {Т}{{\CYRT}}1
+    {У}{{\CYRU}}1 {Ф}{{\CYRF}}1 {Х}{{\CYRH}}1 {Ц}{{\CYRC}}1
+    {Ч}{{\CYRCH}}1 {Ш}{{\CYRSH}}1 {Щ}{{\CYRSHCH}}1 {Ъ}{{\CYRHRDSN}}1
+    {Ы}{{\CYRERY}}1 {Ь}{{\CYRSFTSN}}1 {Э}{{\CYREREV}}1 {Ю}{{\CYRYU}}1
+    {Я}{{\CYRYA}}1
+    {а}{{\cyra}}1 {б}{{\cyrb}}1 {в}{{\cyrv}}1 {г}{{\cyrg}}1
+    {д}{{\cyrd}}1 {е}{{\cyre}}1 {ё}{{\cyryo}}1 {ж}{{\cyrzh}}1
+    {з}{{\cyrz}}1 {и}{{\cyri}}1 {й}{{\cyrishrt}}1 {к}{{\cyrk}}1
+    {л}{{\cyrl}}1 {м}{{\cyrm}}1 {н}{{\cyrn}}1 {о}{{\cyro}}1
+    {п}{{\cyrp}}1 {р}{{\cyrr}}1 {с}{{\cyrs}}1 {т}{{\cyrt}}1
+    {у}{{\cyru}}1 {ф}{{\cyrf}}1 {х}{{\cyrh}}1 {ц}{{\cyrc}}1
+    {ч}{{\cyrch}}1 {ш}{{\cyrsh}}1 {щ}{{\cyrshch}}1 {ъ}{{\cyrhrdsn}}1
+    {ы}{{\cyrery}}1 {ь}{{\cyrsftsn}}1 {э}{{\cyrerev}}1 {ю}{{\cyryu}}1
+    {я}{{\cyrya}}1
+}
+\captionsetup[lstlisting]{labelsep=period}
+\addto\captionsrussian{\renewcommand{\lstlistingname}{Листинг}}
 
 \usepackage[
   unicode, 
@@ -51,8 +87,11 @@
   linkcolor=blue,
   citecolor=red,
   bookmarksnumbered=true,
-  pdftitle={},
-  pdfauthor={}
+  pdftitle={Анализ представлений об эффективности нововведений},
+  pdfauthor={Иванов Константин Константинович},
+  pdflang={ru-RU},
+  pdfsubject={Анализ правил проверки эффективности инвестиционных проектов},
+  pdfkeywords={эффективность, инвестиционные проекты, федеральный бюджет}
 ]{hyperref}
 
 % ----------------------------------------------------------------------------------
@@ -159,5 +198,82 @@ kriterion "--- признак для суждения) же есть не что
 "--- критерий в форме эффекта (необходимость строительства), один фактор "---
 детализирующий и один фактор "--- обоснование частных технических решений путём
 сравнения с аналогами.
+
+% ----------------------------------------------------------------------------------
+\clearpage
+\appendix
+\section{Примеры оформления}
+
+\subsection{Формулы и ссылки}
+Для количественно заданных эффекта $E$ и затрат $C$ показатель эффективности
+имеет вид
+\begin{equation}
+  \eta = \frac{E}{C}, \qquad C > 0.
+  \label{eq:efficiency}
+\end{equation}
+Формула~\eqref{eq:efficiency} задаёт отношение эффекта к затратам; единицы
+измерения зависят от выбранных величин. Числа в примерах ниже условные\footnote{
+  Примеры иллюстрируют оформление документа и не содержат результатов анализа
+  инвестиционных проектов.}.
+
+Термин на английском языке можно выделить явно:
+\foreignlanguage{english}{cost-effectiveness analysis}.
+Ссылка на таблицу~\ref{t:Legend} ведёт к описанию графических обозначений.
+Исходный файл сборки документа доступен по адресу
+\url{https://github.com/megabyde/latex-report-boilerplate/blob/main/.github/workflows/main.yml}.
+
+\subsection{Рисунки и подрисунки}
+На рисунке~\ref{fig:calculation} приведены схема расчёта и условные исходные
+данные.
+
+\begin{figure}[htbp]
+  \centering
+  \subfigure[Схема расчёта\label{fig:scheme}]{%
+    \makebox[0.4\linewidth]{%
+      \begin{tikzpicture}[node distance=1cm]
+        \node[draw, rounded corners] (input) {$E, C$};
+        \node[draw, below=of input] (ratio) {$\eta = E/C$};
+        \draw[->] (input) -- (ratio);
+      \end{tikzpicture}
+    }
+  }
+  \hfill
+  \subfigure[Исходные данные\label{fig:data}]{%
+    \makebox[0.4\linewidth]{%
+      \begin{tikzpicture}
+        \draw[->] (0,0) -- (3.5,0);
+        \draw[->] (0,0) -- (0,2.5);
+        \fill[gray!40] (0.5,0) rectangle (1.2,2.1);
+        \fill[gray!70] (2,0) rectangle (2.7,0.7);
+        \node[below] at (0.85,0) {$E$};
+        \node[below] at (2.35,0) {$C$};
+        \node[above] at (0.85,2.1) {$12$};
+        \node[above] at (2.35,0.7) {$4$};
+      \end{tikzpicture}
+    }
+  }
+  \caption{Расчёт показателя эффективности по условным данным}
+  \label{fig:calculation}
+\end{figure}
+
+\subsection{Код}
+В листинге~\ref{lst:efficiency} формула~\eqref{eq:efficiency} применена к трём
+парам значений. Комментарий и строка вывода содержат кириллицу.
+
+\begin{lstlisting}[language=Python, caption={Расчёт на Python}, label={lst:efficiency}]
+effects = [12.0, 18.0, 15.0]
+costs = [4.0, 6.0, 5.0]
+
+# Считаем эффективность при положительных затратах
+efficiency = [effect / cost for effect, cost in zip(effects, costs)]
+print("Эффективность проектов:", efficiency)
+\end{lstlisting}
+
+Имя переменной можно включить в строку: \lstinline[language=Python]|efficiency|.
+Команда сборки приведена в листинге~\ref{lst:build}.
+
+\begin{lstlisting}[language=bash, caption={Сборка документа}, label={lst:build}]
+latexmk -pdf -interaction=nonstopmode -halt-on-error report.tex
+\end{lstlisting}
 
 \end{document}
